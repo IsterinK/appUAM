@@ -1,60 +1,31 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Dimensions, StyleSheet } from "react-native";
-import WelcomeSlide from "./src/screens/WelcomeSlide";
-import RegisterForm from "./src/screens/RegisterForm";
-import LoginForm from "./src/screens/LoginForm";
 import { useEffect, useState } from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import HomeStack from "./src/stack/HomeStack";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-
-const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function App() {
-  const [orientation, setOrientation] = useState(null);
-
-  const handleOrientationChange = ({ window: { width, height } }) => {
-    const newOrientation = height > width ? "portrait" : "landscape";
-    setOrientation(newOrientation);
-  };
-
-  useEffect(() => {
-    const a = Dimensions.addEventListener("change", handleOrientationChange);
-    return () => {
-      //Dimensions.removeEventListener("change", handleOrientationChange);
-      a.remove()
-    };
-  }, []);
-
-  useEffect(() => {
-    console.log("Orientation:", orientation);
-  }, [orientation]); // Se ejecutará cuando cambie la orientación
+  const [userRegistered, setUserRegistered] = useState(false);
+  const handleRegistrationComplete = () =>{
+    setUserRegistered(!userRegistered);
+  }
 
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Welcome"
-        screenOptions={{
-          headerStyle:
-            orientation === "portrait"
-              ? styles.headerStylePortrait
-              : console.log("landscape"),
-        }}
-      >
-        <Stack.Screen name="Welcome" component={WelcomeSlide} />
-        <Stack.Screen name="Registro" component={RegisterForm} />
-        <Stack.Screen name="Login" component={LoginForm} />
-      </Stack.Navigator>
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeStack} options={{
+          tabBarLabel: "Inicio",
+          tabBarIcon: ({ color, size }) => (
+          <MaterialCommunityIcons name="home" color={color} size={size} />)
+        }}>
+          
+        </Tab.Screen>
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  headerStylePortrait: {
-    backgroundColor: "#2181CD",
-    height: 100,
-  },
-  headerStyleLandscape: {
-    backgroundColor: "#2181CD",
-    height: 50,
-  },
-}); 

@@ -54,10 +54,12 @@ const WelcomeSlide = () => {
     </Swiper>
   );
 };
+
 const styles = StyleSheet.create({
   imgBackground: {
     width: "100%",
     height: "90%",
   },
 });
+
 export default WelcomeSlide;
