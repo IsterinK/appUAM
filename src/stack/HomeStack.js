@@ -5,12 +5,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import WelcomeSlide from "../screens/WelcomeSlide";
 import RegisterForm from "../screens/RegisterForm";
 import LoginForm from "../screens/LoginForm"
-<<<<<<< HEAD
-import ProductsApiFetch from '../screens/ProductsApiAxios';
-=======
 import ProductsApiAxios from '../screens/ProductsApiAxios';
+import MoviesApiAxios from '../screens/MoviesApiAxios';
 
->>>>>>> 422e8703fd00bce7ed15bb04f7ba5b8ac053f3ee
 
 const Stack = createStackNavigator();
 
@@ -58,19 +55,15 @@ const HomeStack = () => {
                 options={{ title: "Login" }} // Personaliza el título del encabezado
             />
             <Stack.Screen
-<<<<<<< HEAD
                 name="Products"
-                component={ProductsApiFetch}
+                component={ProductsApiAxios}
                 options={{ title: "Products" }} // Personaliza el título del encabezado
             />
-=======
-                name="ApiAxios"
-                component={ProductsApiAxios}
-                options={{ title: "ApiAxios" }} 
-                 // Personaliza el título del encabezado
+            <Stack.Screen
+                name="Movies"
+                component={MoviesApiAxios}
+                options={{ title: "Movies" }} // Personaliza el título del encabezado
             />
-            
->>>>>>> 422e8703fd00bce7ed15bb04f7ba5b8ac053f3ee
         </Stack.Navigator>
     )
 }
