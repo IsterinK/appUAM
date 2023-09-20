@@ -14,6 +14,7 @@ export default function App() {
     setUserRegistered(!userRegistered);
   }
 
+
   return (
     <NavigationContainer>
       <Tab.Navigator>
