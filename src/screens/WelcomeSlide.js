@@ -14,6 +14,9 @@ const WelcomeSlide = () => {
   const goToApiAxios = () => {
     navigation.navigate("ApiAxios");
   };
+  const goToPokemon = () => {
+    navigation.navigate("PokemonAxios")
+  }
 
   const Slide1 = () => {
     return (
@@ -45,6 +48,7 @@ const WelcomeSlide = () => {
           <Button title="Registrarse" onPress={goToRegister} />
           <Button title="Iniciar sesión" onPress={goToLogin} />
           <Button title="Api Axios" onPress={goToApiAxios} />
+          <Button title="Pokemon" onPress={goToPokemon} />
         </ImageBackground>
       </View>
     );
