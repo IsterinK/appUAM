@@ -11,6 +11,9 @@ const WelcomeSlide = () => {
   const goToLogin = () => {
     navigation.navigate("Login");
   };
+  const goToProducts = () =>{
+    navigation.navigate("Products");
+  }
 
   const Slide1 = () => {
     return (
@@ -18,7 +21,11 @@ const WelcomeSlide = () => {
         <ImageBackground
           source={require("./images/digital_artist_male.jpg")}
           style={styles.imgBackground}
-        ></ImageBackground>
+        >
+          <Button title="Registrarse" onPress={goToRegister} />
+          <Button title="Iniciar sesión" onPress={goToLogin} />
+          <Button title="Products" onPress={goToProducts} />
+        </ImageBackground>
       </View>
     );
   };
@@ -39,8 +46,6 @@ const WelcomeSlide = () => {
           source={require("./images/digital_3.jpg")}
           style={styles.imgBackground}
         >
-          <Button title="Registrarse" onPress={goToRegister} />
-          <Button title="Iniciar sesión" onPress={goToLogin} />
         </ImageBackground>
       </View>
     );
