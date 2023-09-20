@@ -40,6 +40,10 @@ const WelcomeSlide = () => {
           <Button title="Movies" onPress={goToMovies} color="black"/>
         </TouchableHighlight>
 
+        <TouchableHighlight style ={styles.button}>
+          <Button title="Pokemon" onPress={goToPokemon} color="black"/>
+        </TouchableHighlight>
+
         <ImageBackground
           source={require("./images/digital_artist_male.jpg")}
           style={styles.imgBackground}
@@ -68,7 +72,7 @@ const WelcomeSlide = () => {
 <       <Button title="Registrarse" onPress={goToRegister} />
         <Button title="Iniciar sesión" onPress={goToLogin} />
         <Button title="Api Axios" onPress={goToApiAxios} />
-        <Button title="Pokemon" onPress={goToPokemon} />
+        
         </ImageBackground>
       </View>
     );
@@ -90,6 +94,7 @@ const styles = StyleSheet.create({
     backgroundColor:"white"
   },
   imgBackground: {
+    margin:0,
     width: "100%",
     height: "90%",
   },
