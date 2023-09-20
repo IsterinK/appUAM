@@ -11,9 +11,15 @@ const WelcomeSlide = () => {
   const goToLogin = () => {
     navigation.navigate("Login");
   };
+<<<<<<< HEAD
   const goToProducts = () =>{
     navigation.navigate("Products");
   }
+=======
+  const goToApiAxios = () => {
+    navigation.navigate("ApiAxios");
+  };
+>>>>>>> 422e8703fd00bce7ed15bb04f7ba5b8ac053f3ee
 
   const Slide1 = () => {
     return (
@@ -46,6 +52,12 @@ const WelcomeSlide = () => {
           source={require("./images/digital_3.jpg")}
           style={styles.imgBackground}
         >
+<<<<<<< HEAD
+=======
+          <Button title="Registrarse" onPress={goToRegister} />
+          <Button title="Iniciar sesión" onPress={goToLogin} />
+          <Button title="Api Axios" onPress={goToApiAxios} />
+>>>>>>> 422e8703fd00bce7ed15bb04f7ba5b8ac053f3ee
         </ImageBackground>
       </View>
     );
