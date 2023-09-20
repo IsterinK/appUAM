@@ -7,6 +7,8 @@ import RegisterForm from "../screens/RegisterForm";
 import LoginForm from "../screens/LoginForm"
 import ProductsApiAxios from '../screens/ProductsApiAxios';
 import MoviesApiAxios from '../screens/MoviesApiAxios';
+import PokemonApiAxios from '../screens/PokemonApiAxios';
+
 
 
 const Stack = createStackNavigator();
@@ -63,6 +65,12 @@ const HomeStack = () => {
                 name="Movies"
                 component={MoviesApiAxios}
                 options={{ title: "Movies" }} // Personaliza el título del encabezado
+            />
+            <Stack.Screen
+                name="PokemonAxios"
+                component={PokemonApiAxios}
+                options={{ title: "PokemonAxios" }} 
+                 // Personaliza el título del encabezado
             />
         </Stack.Navigator>
     )
