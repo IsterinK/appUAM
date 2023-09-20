@@ -5,6 +5,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import WelcomeSlide from "../screens/WelcomeSlide";
 import RegisterForm from "../screens/RegisterForm";
 import LoginForm from "../screens/LoginForm"
+import ProductsApiAxios from '../screens/ProductsApiAxios';
+
 
 const Stack = createStackNavigator();
 
@@ -51,6 +53,13 @@ const HomeStack = () => {
                 component={LoginForm}
                 options={{ title: "Login" }} // Personaliza el título del encabezado
             />
+            <Stack.Screen
+                name="ApiAxios"
+                component={ProductsApiAxios}
+                options={{ title: "ApiAxios" }} 
+                 // Personaliza el título del encabezado
+            />
+            
         </Stack.Navigator>
     )
 }
