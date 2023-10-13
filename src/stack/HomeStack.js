@@ -8,8 +8,7 @@ import LoginForm from "../screens/LoginForm"
 import ProductsApiAxios from '../screens/ProductsApiAxios';
 import MoviesApiAxios from '../screens/MoviesApiAxios';
 import PokemonApiAxios from '../screens/PokemonApiAxios';
-
-
+import { Posts } from '../components/Posts';
 
 const Stack = createStackNavigator();
 
@@ -72,17 +71,23 @@ const HomeStack = () => {
                 options={{ title: "PokemonAxios" }} 
                  // Personaliza el título del encabezado
             />
+            <Stack.Screen
+                name="Posts"
+                component={Posts}
+                options={{ title: "Posts" }} 
+                // Personaliza el título del encabezado
+            />
         </Stack.Navigator>
     )
 }
 
 const styles = StyleSheet.create({
     headerStylePortrait: {
-        backgroundColor: "#2181CD",
+        backgroundColor: "#75ffa8",
         height: 100,
     },
     headerStyleLandscape: {
-        backgroundColor: "#2181CD",
+        backgroundColor: "#75ffa8",
         height: 50,
     },
 }); 

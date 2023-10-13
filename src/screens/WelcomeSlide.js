@@ -20,6 +20,9 @@ const WelcomeSlide = () => {
   const goToPokemon = () => {
     navigation.navigate("PokemonAxios")
   }
+  const goToPosts = () => {
+    navigation.navigate("Posts")
+  }
 
   const Slide1 = () => {
     return (
@@ -44,11 +47,15 @@ const WelcomeSlide = () => {
           <Button title="Pokemon" onPress={goToPokemon} color="black"/>
         </TouchableHighlight>
 
-        <ImageBackground
+        <TouchableHighlight style ={styles.button}>
+          <Button title="Posts" onPress={goToPosts} color="black"/>
+        </TouchableHighlight>
+
+        {/* <ImageBackground
           source={require("./images/digital_artist_male.jpg")}
           style={styles.imgBackground}
         >
-        </ImageBackground>
+        </ImageBackground> */}
       </View>
     );
   };
@@ -91,6 +98,7 @@ const styles = StyleSheet.create({
   view:{
     flex:1,
     alignItems:"center",
+    justifyContent:"center",
     backgroundColor:"white"
   },
   imgBackground: {

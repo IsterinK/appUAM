@@ -18,10 +18,10 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeStack} options={{
-          tabBarLabel: "Inicio",
-          tabBarIcon: ({ color, size }) => (
-          <MaterialCommunityIcons name="home" color={color} size={size} />)
+        <Tab.Screen name="App" component={HomeStack} options={{
+          tabBarIcon: () => (
+          <MaterialCommunityIcons name="home" color={"black"} size={35} />),
+          tabBarLabel: ""
         }}>
           
         </Tab.Screen>
