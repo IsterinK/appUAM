@@ -5,6 +5,7 @@ import PostForm from './PostForm';
 import axios from 'axios';
 
 export const Posts = () => {
+    const ip = "192.168.120.25"
     const [postLists, setPostList] = useState([])
     const [modalVisible, setModalVisible] = useState(false)
     const [confirmationModalVisible, setConfirmationModalVisible] = useState(false);
@@ -15,7 +16,7 @@ export const Posts = () => {
     }, []);
 
     const updatePosts = () => {
-        axios.get(`http://192.168.0.12:3000/api/v1/posts/`)
+        axios.get(`http://${ip}:3000/api/v1/posts/`)
         .then((response) =>{
             setPostList(response.data)
         })
@@ -24,7 +25,7 @@ export const Posts = () => {
 
     const handleDeletePost = () => {
         axios
-            .delete(`http://192.168.0.12:3000/api/v1/posts/removepost/${confirmItemId}`)
+            .delete(`http://${ip}:3000/api/v1/posts/removepost/${confirmItemId}`)
             .then((response) => {
                 setConfirmationModalVisible(false);
                 updatePosts();
@@ -71,7 +72,7 @@ export const Posts = () => {
                                 <View style={styles.imageContainer}>
                                     <Image
                                         style={styles.avatar}
-                                        source={{ uri: `http://192.168.0.12:3000/${item.avatar}` }}
+                                        source={{ uri: `http://${ip}:3000/${item.avatar}` }}
                                     />
                                 </View>
                             </View>

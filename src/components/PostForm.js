@@ -5,6 +5,7 @@ import axios from 'axios';
 import ImagePickerExample from '../components/ImagePickerExample';
 
 const PostForm = ({ onHideModal, updatePosts  }) => {
+    const ip = "192.168.120.25"
     const [newPost, setNewPost] = useState({
       title: "",
       subtitle: "",
@@ -56,7 +57,7 @@ const PostForm = ({ onHideModal, updatePosts  }) => {
           });
       
           axios
-            .post(`http://192.168.0.12:3000/api/v1/posts/new-post/`, formData)
+            .post(`http://${ip}:3000/api/v1/posts/new-post/`, formData)
             .then((response) => {
               if (response.status === 201) {
                 setNewPost({
