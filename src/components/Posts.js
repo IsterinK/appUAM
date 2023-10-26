@@ -6,6 +6,7 @@ import axios from 'axios';
 
 export const Posts = () => {
     const ip = "192.168.0.12"
+
     const [postLists, setPostList] = useState([])
     const [modalVisible, setModalVisible] = useState(false)
     const [confirmationModalVisible, setConfirmationModalVisible] = useState(false);
