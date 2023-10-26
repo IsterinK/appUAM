@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useNavigation } from "@react-navigation/native";
 
 const RegisterForm = () => {
-    const ip = "192.168.1.12";
+    const ip = "192.168.0.12";
     const [userName, setUserName] = useState('');
     const [lastName, setLastName] = useState('');
     const [documentType, setDocumentType] = useState('Cédula de ciudadanía');
@@ -55,7 +55,7 @@ const RegisterForm = () => {
                 </View>
                 <TextInput style={styles.input} placeholder='Número de documento' value={documentNumber} onChangeText={(text) => setDocumentNumber(text)} keyboardType='numeric' />
                 <TextInput style={styles.input} placeholder='Email' value={email} onChangeText={(text) => setEmail(text)} keyboardType='email-address' />
-                <TextInput style={styles.input} placeholder='Contrasena' value={password} onChangeText={(text) => setPassword(text)} />
+                <TextInput style={styles.input} placeholder='Contrasena' value={password} secureTextEntry={true} onChangeText={(text) => setPassword(text)} />
                 <TouchableOpacity style={styles.button} onPress={handleRegister}>
                   <Text style={styles.buttonText}>Registrarse</Text>
                 </TouchableOpacity>
