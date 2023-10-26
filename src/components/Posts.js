@@ -5,7 +5,7 @@ import PostForm from './PostForm';
 import axios from 'axios';
 
 export const Posts = () => {
-    const ip = "192.168.120.25"
+    const ip = "192.168.0.12"
     const [postLists, setPostList] = useState([])
     const [modalVisible, setModalVisible] = useState(false)
     const [confirmationModalVisible, setConfirmationModalVisible] = useState(false);
@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
         alignItems:"center",
         flex:1,
         backgroundColor:"white",
+        marginTop:50
     },
 
     button: {

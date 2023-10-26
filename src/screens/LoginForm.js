@@ -4,6 +4,8 @@ import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+const ip = "192.168.0.12:3000"
+
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [current_password, setcurrent_password] = useState("");
@@ -13,10 +15,10 @@ export const Login = () => {
   const handleLogin = async () => {
     try {
       const response = await axios.post(
-        "http://192.168.120.25:3000/api/v1/auth/login",
+        `http://${ip}/api/v1/users/login`,
         {
           email: email,
-          current_password: current_password,
+          password: current_password,
         }
       );
 
@@ -26,14 +28,14 @@ export const Login = () => {
         "Inicio de sesión exitoso",
         "¡Bienvenido! Por favor, inicia sesión para continuar."
       );
-      navigation.navigate("MainMenu");
-    } catch (error) {
-      console.error("Error de inicio de sesión:", error);
-      Alert.alert(
-        "Error",
-        "Nombre de usuario o contraseña incorrectos. Por favor, inténtalo de nuevo."
-      );
-    }
+        navigation.navigate("Posts");
+      } catch (error) {
+        console.log(error)
+        Alert.alert(
+          "Inicio de sesión incorrecto",
+          "Nombre de usuario o contraseña incorrectos. Por favor, inténtalo de nuevo."
+        );
+      }
   };
 
   const signUp = () =>{
