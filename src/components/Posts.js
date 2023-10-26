@@ -5,7 +5,7 @@ import PostForm from './PostForm';
 import axios from 'axios';
 
 export const Posts = () => {
-    const ip = "192.168.120.25"
+    const ip = "192.168.1.12"
     const [postLists, setPostList] = useState([])
     const [modalVisible, setModalVisible] = useState(false)
     const [confirmationModalVisible, setConfirmationModalVisible] = useState(false);
