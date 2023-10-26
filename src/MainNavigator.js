@@ -26,14 +26,9 @@ const HomeStack = () => {
         };
     }, []);
 
-    useEffect(() => {
-        console.log("Orientation:", orientation);
-    }, [orientation]);
-
     return (
         <Stack.Navigator
             initialRouteName="Login"
-            options={{ headerShown: false }}
             screenOptions={{
                 headerShown: false,
                 headerStyle:
@@ -82,12 +77,12 @@ const HomeStack = () => {
 
 const styles = StyleSheet.create({
     headerStylePortrait: {
-        backgroundColor: "#fafafa",
-        height: 100,
+        backgroundColor: 'rgba(0, 0, 0, 0)', 
+        height: 200,
     },
     headerStyleLandscape: {
-        backgroundColor: "#fafafa",
-        height: 100,
+        backgroundColor: 'rgba(0, 0, 0, 0)', 
+        height: 200,
     },
 }); 
 

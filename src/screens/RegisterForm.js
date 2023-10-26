@@ -1,8 +1,7 @@
 import { Picker } from '@react-native-picker/picker';
-import React, { useState } from 'react'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import React, { useState } from 'react';
+import { Button, Image, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import axios from 'axios';
-import { TextInput } from 'react-native-gesture-handler';
 import { useNavigation } from "@react-navigation/native";
 
 const RegisterForm = () => {
@@ -14,65 +13,113 @@ const RegisterForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigation = useNavigation();
-    
+
     const handleRegister = async () => {
         try {
-          const userData = {
-            name: userName,
-            lastname: lastName,
-            documentType: documentType,
-            identification: documentNumber,
-            email: email,
-            password: password
-          };
-      
-          const response = await axios.post(`http://${ip}:3000/api/v1/users/signup`, userData)
-          navigation.navigate("Login");
-          console.log('Respuesta del servidor:', response.data);
-        } catch (error) {
-          console.error('Error al registrar el usuario:', error);
-        }
-      };
+            const userData = {
+                name: userName,
+                lastname: lastName,
+                documentType: documentType,
+                identification: documentNumber,
+                email: email,
+                password: password
+            };
 
-  return (
-    <View style={styles.container}>
-        <Text style={styles.header}>Formulario de registro</Text>
-        <TextInput style={styles.input} placeholder='Nombre(s)' value={userName} onChangeText={(text) => setUserName(text)}/>
-        <TextInput style={styles.input} placeholder='Apellido(s)' value={lastName} onChangeText={(text) => setLastName(text)}/> 
-        <Picker selectedValue={documentType} onValueChange={(itemSelcted) => setDocumentType(itemSelcted)}>
-            <Picker.Item label='Cédula de ciudadanía' value='Cédula de ciudadanía'></Picker.Item>
-            <Picker.Item label='Cédula de extranjería' value='Cédula de extranjería'></Picker.Item>
-            <Picker.Item label='Pasaporte' value='Pasaporte'></Picker.Item>
-        </Picker>
-        <TextInput style={styles.input} placeholder='Número de documento' value={documentNumber} onChangeText={(text) => setDocumentNumber(text)} keyboardType='numeric' />
-        <TextInput style={styles.input} placeholder='Email' value={email} onChangeText={(text) => setEmail(text)} keyboardType='email-address' />
-        <TextInput style={styles.input} placeholder='Contrasena' value={password} onChangeText={(text) => setPassword(text)} />
-        <Button title='Registrarse' onPress={handleRegister}></Button>
-    </View>
-  )
+            const response = await axios.post(`http://${ip}:3000/api/v1/users/signup`, userData);
+            navigation.navigate("Login");
+            console.log('Respuesta del servidor:', response.data);
+        } catch (error) {
+            console.error('Error al registrar el usuario:', error);
+        }
+    };
+
+    return (
+        <ImageBackground
+            source={{ uri: "https://w0.peakpx.com/wallpaper/502/610/HD-wallpaper-grungy-texture-fire-grunge-modern-orange-stain-wood-thumbnail.jpg" }}
+            style={styles.background}
+        >
+            <View style={styles.container}>
+                <Text style={styles.header}>Registro</Text>
+                <TextInput style={styles.input} placeholder='Nombre(s)' value={userName} onChangeText={(text) => setUserName(text)} />
+                <TextInput style={styles.input} placeholder='Apellido(s)' value={lastName} onChangeText={(text) => setLastName(text)} />
+                <View style={styles.pickerContainer}>
+                    <Picker
+                        selectedValue={documentType}
+                        onValueChange={(itemSelected) => setDocumentType(itemSelected)}
+                        style={styles.picker}
+                    >
+                        <Picker.Item label='Cédula de ciudadanía' value='Cédula de ciudadanía' />
+                        <Picker.Item label='Cédula de extranjería' value='Cédula de extranjería' />
+                        <Picker.Item label='Pasaporte' value='Pasaporte' />
+                    </Picker>
+                </View>
+                <TextInput style={styles.input} placeholder='Número de documento' value={documentNumber} onChangeText={(text) => setDocumentNumber(text)} keyboardType='numeric' />
+                <TextInput style={styles.input} placeholder='Email' value={email} onChangeText={(text) => setEmail(text)} keyboardType='email-address' />
+                <TextInput style={styles.input} placeholder='Contrasena' value={password} onChangeText={(text) => setPassword(text)} />
+                <TouchableOpacity style={styles.button} onPress={handleRegister}>
+                  <Text style={styles.buttonText}>Registrarse</Text>
+                </TouchableOpacity>
+            </View>
+        </ImageBackground>
+    );
 }
 
 const styles = StyleSheet.create({
-    container:{
+    background: {
+        flex: 1,
+        width: "100%",
+        height: "100%",
+        resizeMode: "cover",
+        
+    },
+    container: {
         flex: 1,
         justifyContent: "center",
-        paddingHorizontal: 20
+        paddingHorizontal: 20,
+        backgroundColor: "rgba(100, 50, 100, 0.3)"
     },
-
-    header:{
-        fontSize: 24,
-        marginBottom: 20,
-        textAlign: "center"
+    header: {
+        fontSize: 50,
+        marginBottom: 30,
+        textAlign: "center",
+        color:"#FAFAFA",
+        
     },
-
-    input:{
-        marginBottom:10,
+    input: {
+        marginBottom: 10,
         paddingVertical: 5,
         paddingHorizontal: 10,
-        borderWidth: 1,
+        borderWidth: 3,
         borderColor: "#ccc",
-        borderRadius: 3
-    }
+        borderRadius: 10
+    },
+    button: {
+      backgroundColor: "#EFEDE6",
+      width: "100%",
+      height: 44,
+      borderRadius: 8,
+      alignItems: "center",
+      justifyContent: "center",
+      marginBottom: 20,
+    },
+    buttonText: {
+      color: "#000000",
+      fontSize: 16,
+      fontWeight: "bold",
+    },
+    pickerContainer: {
+      marginBottom: 10,
+      borderRadius:10,
+      borderWidth:3,
+      borderColor:"#ccc",
+      backgroundColor:"#ccc"
+    },
+    picker: {
+      backgroundColor:"#ccc",
+      height: 55,
+      width: '100%',
+      color: "#000000",
+    },
 })
 
 export default RegisterForm;
