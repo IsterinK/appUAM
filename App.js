@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeStack from "./src/stack/HomeStack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import LoginProvider from "./src/context/LoginProvider";
+import MainNavigator from "./src/MainNavigator"
 
 const Tab = createBottomTabNavigator();
 
@@ -14,19 +16,12 @@ export default function App() {
     setUserRegistered(!userRegistered);
   }
 
-
   return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="App" component={HomeStack} options={{
-          tabBarIcon: () => (
-          <MaterialCommunityIcons name="home" color={"black"} size={35} />),
-          tabBarLabel: ""
-        }}>
-          
-        </Tab.Screen>
-      </Tab.Navigator>
-    </NavigationContainer>
+    <LoginProvider>
+      <NavigationContainer>
+        <MainNavigator />
+      </NavigationContainer>
+    </LoginProvider>
   );
 }
 

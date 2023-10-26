@@ -36,60 +36,16 @@ const WelcomeSlide = () => {
         </TouchableHighlight>
 
         <TouchableHighlight style ={styles.button}>
-          <Button title="Products" onPress={goToApiAxios} color="black"/>
-        </TouchableHighlight>
-
-        <TouchableHighlight style ={styles.button}>
-          <Button title="Movies" onPress={goToMovies} color="black"/>
-        </TouchableHighlight>
-
-        <TouchableHighlight style ={styles.button}>
-          <Button title="Pokemon" onPress={goToPokemon} color="black"/>
-        </TouchableHighlight>
-
-        <TouchableHighlight style ={styles.button}>
           <Button title="Posts" onPress={goToPosts} color="black"/>
         </TouchableHighlight>
 
-        {/* <ImageBackground
-          source={require("./images/digital_artist_male.jpg")}
-          style={styles.imgBackground}
-        >
-        </ImageBackground> */}
       </View>
     );
   };
-  /* const Slide2 = () => {
-    return (
-      <View>
-        <ImageBackground
-          source={require("./images/digital_2.jpg")}
-          style={styles.imgBackground}
-        ></ImageBackground>
-      </View>
-    );
-  };
-  const Slide3 = () => {
-    return (
-      <View>
-        <ImageBackground
-          source={require("./images/digital_3.jpg")}
-          style={styles.imgBackground}
-        >
-<       <Button title="Registrarse" onPress={goToRegister} />
-        <Button title="Iniciar sesión" onPress={goToLogin} />
-        <Button title="Api Axios" onPress={goToApiAxios} />
-        
-        </ImageBackground>
-      </View>
-    );
-  }; */
 
   return (
     <Swiper>
       <Slide1 />
-      {/* <Slide2 />
-      <Slide3 /> */}
     </Swiper>
   );
 };
