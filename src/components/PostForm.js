@@ -87,7 +87,7 @@ const PostForm = ({ onHideModal, updatePosts  }) => {
   
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text style={{ fontWeight: "bold", fontSize: 30, marginBottom: 10 }}>Create a post</Text>
+        <Text style={{ fontWeight: "bold", fontSize: 30, marginBottom: 10 }}>Creación de post</Text>
   
         <TextInput
           placeholder='title'

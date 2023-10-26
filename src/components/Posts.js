@@ -4,6 +4,7 @@ import { Card , Divider} from 'react-native-elements';
 import PostForm from './PostForm';
 import axios from 'axios';
 import Swiper from 'react-native-swiper';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export const Posts = () => {
     const ip = "192.168.0.12"
@@ -40,16 +41,16 @@ export const Posts = () => {
 
     return (
         <View style={styles.view}>
-            <TouchableHighlight style ={styles.button}>
-                <Button title="Añadir un post" onPress={() => setModalVisible(true)} color="black"/>
-            </TouchableHighlight>
+            <TouchableOpacity style={styles.button} onPress={() => setModalVisible(true)}>
+                <Text style={styles.buttonText}>Añadir un post</Text>
+            </TouchableOpacity>
 
             <FlatList
                 style={styles.flat}
                 data={postLists} 
                 keyExtractor={(item) => item._id}
                 renderItem={({ item }) => (
-                    <View style={{ width: "93%", marginBottom:10 }}>
+                    <View style={{ width: "93%", marginBottom:15 }}>
                         <Card containerStyle={styles.card}>
                             <View style={styles.cardContent}>
                                 <View style={styles.cardHeader}>
@@ -57,7 +58,7 @@ export const Posts = () => {
                                         style={styles.image}
                                         source={{ uri: "https://www.iconarchive.com/download/i96797/iconsmind/outline/Post-Mail-2.ico" }}
                                     />
-                                    <Text style={[styles.textField, { fontSize:20, fontWeight:"bold" }]}>{item.title}</Text>
+                                    <Text style={[styles.textField, { fontSize:17, fontWeight:"bold" }]}>{item.title}</Text>
                                     <TouchableHighlight onPress={() => {setConfirmationModalVisible(true); setConfirmItemId(item._id)}} style={{backgroundColor:"#F25F67", borderRadius:10, width:40, height:40, justifyContent:'center', alignItems:"center"}}
                                     >
                                         <Image source={{ uri: "https://cdn-icons-png.flaticon.com/512/18/18297.png" }} style={{ width: 30, height: 30}} />
@@ -111,22 +112,11 @@ const styles = StyleSheet.create({
         width:"100%",
         alignItems:"center",
         flex:1,
-        backgroundColor:"white",
-        marginTop:50
+        backgroundColor:"#ED9E4E",
     },
 
     imageContainer:{
         height:320
-    },
-
-    button: {
-      width:200,
-      alignItems: 'center',
-      backgroundColor: 'black',
-      padding: 10,
-      borderRadius: 50,
-      margin:7,
-      marginTop:15
     },
 
     avatar:{
@@ -178,5 +168,24 @@ const styles = StyleSheet.create({
         paddingTop: 50,
         alignContent: "center",
         alignItems: 'center'
-    }
+    },
+
+    button: {
+        marginBottom: 20,
+        width:350,
+        alignItems: 'center',
+        backgroundColor: 'white',
+        padding: 10,
+        borderRadius: 50,
+        borderWidth:1,
+        borderColor:"black",
+        margin:7,
+        marginTop:60
+      },
+
+    buttonText: {
+        color: "#000000",
+        fontSize: 16,
+        fontWeight: "bold",
+    },
 });
