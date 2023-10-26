@@ -4,13 +4,14 @@ import { StyleSheet, Text , TouchableHighlight , Button, View } from 'react-nati
 import axios from 'axios';
 import ImagePickerExample from '../components/ImagePickerExample';
 
+
 const PostForm = ({ onHideModal, updatePosts  }) => {
     const ip = "192.168.0.12"
+    let avatarObjects = [];
     const [newPost, setNewPost] = useState({
       title: "",
       subtitle: "",
       description: "",
-      avatar: "",
       active: false,
     });
   
@@ -21,8 +22,12 @@ const PostForm = ({ onHideModal, updatePosts  }) => {
       avatar: "",
     });
   
-    const handleImageSelection = (selectedImage) => {
-        setNewPost({ ...newPost, avatar: selectedImage.uri });
+    const handleImageSelection = (selectedImages) => {
+      avatarObjects = selectedImages.map((image, index) => ({
+        name: `avatar_${index}.jpg`, 
+        type: 'image/jpeg',
+        uri: image.uri,
+      }));
     };
   
     const handleCreatePost = () => {
@@ -38,24 +43,22 @@ const PostForm = ({ onHideModal, updatePosts  }) => {
         if (newPost.description.trim() === "") {
           errors.description = "Description is required";
         }
-        if (!newPost.avatar) {
+        if (!avatarObjects) {
           errors.avatar = "Avatar image is required";
         }
       
         if (Object.keys(errors).length > 0) {
           setErrorMessages(errors);
         } else {
-          // Create a FormData object to send the image file
           const formData = new FormData();
           formData.append("title", newPost.title);
           formData.append("subtitle", newPost.subtitle);
           formData.append("description", newPost.description);
-          formData.append("avatar", {
-            uri: newPost.avatar,
-            type: "image/jpeg", // Modify the type based on your image type
-            name: "avatar.jpg", // Modify the name based on your image name
+          avatarObjects.forEach((avatar, index) => {
+            formData.append(`avatar_${index}`, avatar);
           });
-      
+          console.log(formData)
+
           axios
             .post(`http://${ip}:3000/api/v1/posts/new-post/`, formData)
             .then((response) => {
@@ -64,7 +67,7 @@ const PostForm = ({ onHideModal, updatePosts  }) => {
                   title: "",
                   subtitle: "",
                   description: "",
-                  avatar: "",
+                  avatar: [],
                   active: false,
                 });
                 updatePosts();
@@ -83,7 +86,7 @@ const PostForm = ({ onHideModal, updatePosts  }) => {
       
   
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: 50 }}>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text style={{ fontWeight: "bold", fontSize: 30, marginBottom: 10 }}>Create a post</Text>
   
         <TextInput

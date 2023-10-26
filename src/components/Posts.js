@@ -3,6 +3,7 @@ import { Modal, StyleSheet, Text , TouchableHighlight , Button, FlatList, Image,
 import { Card , Divider} from 'react-native-elements';
 import PostForm from './PostForm';
 import axios from 'axios';
+import Swiper from 'react-native-swiper';
 
 export const Posts = () => {
     const ip = "192.168.0.12"
@@ -47,7 +48,7 @@ export const Posts = () => {
                 data={postLists} 
                 keyExtractor={(item) => item._id}
                 renderItem={({ item }) => (
-                    <View style={{ width: "93%" }}>
+                    <View style={{ width: "93%", marginBottom:10 }}>
                         <Card containerStyle={styles.card}>
                             <View style={styles.cardContent}>
                                 <View style={styles.cardHeader}>
@@ -69,12 +70,15 @@ export const Posts = () => {
                                 <Divider style={{ backgroundColor: 'black' }} />
                                 <Text style={styles.textField}>Estado: {item.active ? "Activo" : "Inactivo"}</Text>
                                 <Divider style={{ backgroundColor: 'black' }} />
-                                <View style={styles.imageContainer}>
-                                    <Image
+                                <Swiper style={styles.imageContainer} showsPagination={true}>
+                                    {item.avatar.map((image, index) => (
+                                        <Image
+                                        key={index}
                                         style={styles.avatar}
-                                        source={{ uri: `http://${ip}:3000/${item.avatar}` }}
-                                    />
-                                </View>
+                                        source={{ uri: `http://${ip}:3000/${image}` }}
+                                        />
+                                    ))}
+                                </Swiper>
                             </View>
                         </Card>
                     </View>
@@ -110,6 +114,10 @@ const styles = StyleSheet.create({
         marginTop:50
     },
 
+    imageContainer:{
+        height:320
+    },
+
     button: {
       width:200,
       alignItems: 'center',
@@ -121,8 +129,8 @@ const styles = StyleSheet.create({
     },
 
     avatar:{
-        resizeMode:'contain',
-        height:200,
+        resizeMode:'stretch',
+        height:250,
         margin:15,
         borderRadius:15
     },
