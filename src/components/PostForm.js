@@ -5,7 +5,7 @@ import axios from 'axios';
 import ImagePickerExample from '../components/ImagePickerExample';
 
 const PostForm = ({ onHideModal, updatePosts  }) => {
-    const ip = "192.168.120.25"
+    const ip = "192.168.0.12"
     const [newPost, setNewPost] = useState({
       title: "",
       subtitle: "",
@@ -83,7 +83,7 @@ const PostForm = ({ onHideModal, updatePosts  }) => {
       
   
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: 50 }}>
         <Text style={{ fontWeight: "bold", fontSize: 30, marginBottom: 10 }}>Create a post</Text>
   
         <TextInput
