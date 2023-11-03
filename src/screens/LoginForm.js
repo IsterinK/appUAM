@@ -15,10 +15,10 @@ export const Login = () => {
   const handleLogin = async () => {
     try {
       const response = await axios.post(
-        `http://${ip}/api/v1/users/login`,
+        `http://mantenimientoandino.co:3000/api/v1/auth/login`,
         {
           email: email,
-          password: current_password,
+          current_password: current_password,
         }
       );
 
@@ -28,7 +28,7 @@ export const Login = () => {
         "Inicio de sesión exitoso",
         "¡Bienvenido! Por favor, inicia sesión para continuar."
       );
-      navigation.navigate("Posts");
+      navigation.navigate("Welcome");
     } catch (error) {
       Alert.alert(
         "Inicio de sesión incorrecto",
