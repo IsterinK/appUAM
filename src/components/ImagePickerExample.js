@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TouchableOpacity, Image, View, Text } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
-export default function ImagePickerExample({ onImageSelect }) {
+export default function ImagePickerExample({ onImageSelect , singleImageSelection }) {
   const [images, setImages] = useState([]);
 
   const pickImage = async () => {
@@ -11,11 +11,12 @@ export default function ImagePickerExample({ onImageSelect }) {
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       aspect: [4, 3],
       quality: 1,
-      allowsMultipleSelection: true,
+      allowsMultipleSelection: singleImageSelection,
     });
 
     if (!result.canceled) {
       const selectedImages = result.assets;
+      console.log(selectedImages);
       setImages(selectedImages); 
       onImageSelect(selectedImages); 
     }

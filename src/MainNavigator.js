@@ -8,6 +8,7 @@ import LoginForm from "./screens/LoginForm"
 import ProductsApiAxios from './screens/ProductsApiAxios';
 import MoviesApiAxios from './screens/MoviesApiAxios';
 import PokemonApiAxios from './screens/PokemonApiAxios';
+import Category from './screens/Category';
 import { Posts } from './components/Posts';
 
 const Stack = createStackNavigator();
@@ -70,6 +71,11 @@ const HomeStack = () => {
                 name="Posts"
                 component={Posts}
                 options={{ title: "Posts" }} 
+            />
+            <Stack.Screen
+                name="Categories"
+                component={Category}
+                options={{ title: "Categories" }} 
             />
         </Stack.Navigator>
     )
