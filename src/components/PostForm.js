@@ -119,7 +119,8 @@ const PostForm = ({ onHideModal, updatePosts  }) => {
         />
         <Text style={{ color: 'red' }}>{errorMessages.description}</Text>
   
-        <ImagePickerExample onImageSelect={handleImageSelection} />
+        <ImagePickerExample onImageSelect={handleImageSelection} singleImageSelection={true}/>
+        
         <Text style={{ color: 'red' }}>{errorMessages.avatar}</Text>
   
         <TouchableHighlight style={styles.button}>

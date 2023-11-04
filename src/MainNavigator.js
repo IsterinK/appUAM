@@ -9,6 +9,7 @@ import ProductsApiAxios from './screens/ProductsApiAxios';
 import MoviesApiAxios from './screens/MoviesApiAxios';
 import PokemonApiAxios from './screens/PokemonApiAxios';
 import { Posts } from './components/Posts';
+import {Service} from './screens/Service';
 
 const Stack = createStackNavigator();
 
@@ -70,6 +71,11 @@ const HomeStack = () => {
                 name="Posts"
                 component={Posts}
                 options={{ title: "Posts" }} 
+            />
+            <Stack.Screen
+                name="Service"
+                component={Service}
+                options={{ title: "Service" }} 
             />
         </Stack.Navigator>
     )
