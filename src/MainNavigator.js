@@ -8,6 +8,7 @@ import LoginForm from "./screens/LoginForm"
 import ProductsApiAxios from './screens/ProductsApiAxios';
 import MoviesApiAxios from './screens/MoviesApiAxios';
 import PokemonApiAxios from './screens/PokemonApiAxios';
+import Category from './screens/Category';
 import { Posts } from './components/Posts';
 import {Service} from './screens/Service';
 
@@ -76,6 +77,11 @@ const HomeStack = () => {
                 name="Service"
                 component={Service}
                 options={{ title: "Service" }} 
+            />
+            <Stack.Screen
+                name="Categories"
+                component={Category}
+                options={{ title: "Categories" }} 
             />
         </Stack.Navigator>
     )

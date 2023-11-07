@@ -16,6 +16,7 @@ export default function ImagePickerExample({ onImageSelect , singleImageSelectio
 
     if (!result.canceled) {
       const selectedImages = result.assets;
+      console.log(selectedImages);
       setImages(selectedImages); 
       onImageSelect(selectedImages); 
     }

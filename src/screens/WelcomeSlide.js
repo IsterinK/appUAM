@@ -27,11 +27,18 @@ const WelcomeSlide = () => {
     navigation.navigate("Service")
   }
 
+  const goToCategories = () => {
+    navigation.navigate("Categories")
+  }
+
   const Slide1 = () => {
     return (
       <View style={styles.view}>
         <TouchableHighlight style ={styles.button}>
           <Button title="Posts" onPress={goToPosts} color="black"/>
+        </TouchableHighlight>
+        <TouchableHighlight style ={styles.button}>
+          <Button title="Categories" onPress={goToCategories} color="black"/>
         </TouchableHighlight>
 
         <TouchableHighlight style ={styles.button}>
