@@ -1,8 +1,11 @@
 import { Picker } from '@react-native-picker/picker';
 import React, { useState } from 'react';
-import { Button, Image, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Button, Image, ImageBackground, Modal, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import axios from 'axios';
+import Checkbox from 'expo-checkbox';
 import { useNavigation } from "@react-navigation/native";
+import ImagePickerExample from '../components/ImagePickerExample';
+import PrivacyPolicies from './PrivacyPolicies';
 
 const RegisterForm = () => {
     const ip = "192.168.0.12";
@@ -12,26 +15,39 @@ const RegisterForm = () => {
     const [documentNumber, setDocumentNumber] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [isChecked, setIsChecked] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
     const navigation = useNavigation();
 
-    const handleRegister = async () => {
-        try {
-            const userData = {
-                name: userName,
-                lastname: lastName,
-                documentType: documentType,
-                identification: documentNumber,
-                email: email,
-                password: password
-            };
-
-            const response = await axios.post(`http://${ip}:3000/api/v1/users/signup`, userData);
-            navigation.navigate("Login");
-            console.log('Respuesta del servidor:', response.data);
-        } catch (error) {
-            console.error('Error al registrar el usuario:', error);
-        }
+    const handleCheckboxChange = () => {
+        setIsChecked(!isChecked);
     };
+
+    const handleRegister = async () => {
+        if(isChecked){
+            try {
+                const userData = {
+                    firstname: userName,
+                    lastname: lastName,
+                    email: email,
+                    current_password: password
+                };
+    
+                const response = await axios.post(`http://mantenimientoandino.co:3000/api/v1/auth/register`, userData);
+                navigation.navigate("Login");
+                console.log('Respuesta del servidor:', response.data);
+            } catch (error) {
+                console.error('Error al registrar el usuario:', error);
+            }
+        }else{
+            Alert.alert(
+                "Términos y condiciones",
+                "Debe aceptar los Términos y condiciones"
+            );
+        }
+
+    };
+
 
     return (
         <ImageBackground
@@ -42,7 +58,7 @@ const RegisterForm = () => {
                 <Text style={styles.header}>Registro</Text>
                 <TextInput style={styles.input} placeholder='Nombre(s)' value={userName} onChangeText={(text) => setUserName(text)} />
                 <TextInput style={styles.input} placeholder='Apellido(s)' value={lastName} onChangeText={(text) => setLastName(text)} />
-                <View style={styles.pickerContainer}>
+{/*                 <View style={styles.pickerContainer}>
                     <Picker
                         selectedValue={documentType}
                         onValueChange={(itemSelected) => setDocumentType(itemSelected)}
@@ -53,13 +69,42 @@ const RegisterForm = () => {
                         <Picker.Item label='Pasaporte' value='Pasaporte' />
                     </Picker>
                 </View>
-                <TextInput style={styles.input} placeholder='Número de documento' value={documentNumber} onChangeText={(text) => setDocumentNumber(text)} keyboardType='numeric' />
+                <TextInput style={styles.input} placeholder='Número de documento' value={documentNumber} onChangeText={(text) => setDocumentNumber(text)} keyboardType='numeric' /> */}
                 <TextInput style={styles.input} placeholder='Email' value={email} onChangeText={(text) => setEmail(text)} keyboardType='email-address' />
                 <TextInput style={styles.input} placeholder='Contrasena' value={password} secureTextEntry={true} onChangeText={(text) => setPassword(text)} />
+
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', margin:10}}>
+                    <Checkbox value={isChecked} onValueChange={handleCheckboxChange} />
+                    <Text> He leído y acepto la </Text>
+                    <TouchableOpacity onPress={() => setModalVisible(true)}>
+                        <Text style={{ color: "white", textDecorationLine: 'underline' }}>política de privacidad</Text>
+                    </TouchableOpacity>
+                </View>
+                
                 <TouchableOpacity style={styles.button} onPress={handleRegister}>
                   <Text style={styles.buttonText}>Registrarse</Text>
                 </TouchableOpacity>
             </View>
+
+            <Modal
+                animationType="slide"
+                visible={modalVisible}
+                onRequestClose={() => {
+                    setModalVisible(!modalVisible);
+                }}
+            >
+                <View style={{ flexDirection: 'row', alignItems: 'flex-end', backgroundColor: 'lightgray', justifyContent: "space-between"}}>
+                    <View style={{ flexDirection: 'row'}}>
+                        {/* <TouchableOpacity onPress={handleGoBack}>
+                            <AntDesign name="arrowleft" size={30} color="black" />
+                        </TouchableOpacity> */}
+                    </View>
+                </View>
+
+                <ScrollView contentContainerStyle>
+                    <PrivacyPolicies />
+                </ScrollView>
+            </Modal>
         </ImageBackground>
     );
 }
@@ -101,6 +146,7 @@ const styles = StyleSheet.create({
       alignItems: "center",
       justifyContent: "center",
       marginBottom: 20,
+      marginTop:10
     },
     buttonText: {
       color: "#000000",
