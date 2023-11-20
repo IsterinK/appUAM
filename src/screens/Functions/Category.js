@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Modal, StyleSheet, Text , TouchableHighlight , Button, FlatList, Image, View } from 'react-native'
 import { Card , Divider} from 'react-native-elements';
-import CategoryForm from '../components/CategoryForm'
-import Services from '../components/Services';
+import CategoryForm from '../../components/CategoryForm'
+import Services from '../../components/Services';
 import axios from 'axios';
 import Swiper from 'react-native-swiper';
 import { TouchableOpacity } from 'react-native-gesture-handler';

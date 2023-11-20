@@ -4,7 +4,7 @@ import { Card , Divider} from 'react-native-elements';
 import axios from 'axios';
 import Swiper from 'react-native-swiper';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import ServiceForm from "../components/ServiceForm"
+import ServiceForm from "../../components/ServiceForm"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const Service = () => {
