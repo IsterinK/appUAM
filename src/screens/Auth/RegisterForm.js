@@ -4,7 +4,7 @@ import { Alert, Button, Image, ImageBackground, Modal, ScrollView, StyleSheet, T
 import axios from 'axios';
 import Checkbox from 'expo-checkbox';
 import { useNavigation } from "@react-navigation/native";
-import ImagePickerExample from '../components/ImagePickerExample';
+import ImagePickerExample from '../../components/ImagePickerExample';
 import PrivacyPolicies from './PrivacyPolicies';
 
 const RegisterForm = () => {
