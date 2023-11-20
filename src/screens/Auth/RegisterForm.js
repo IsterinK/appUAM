@@ -27,15 +27,20 @@ const RegisterForm = () => {
         if(isChecked){
             try {
                 const userData = {
-                    firstname: userName,
+                    name: userName,
                     lastname: lastName,
                     email: email,
-                    current_password: password
+                    password: password,
+                    documentType: documentType,
+                    identification: documentNumber
                 };
     
-                const response = await axios.post(`http://mantenimientoandino.co:3000/api/v1/auth/register`, userData);
+                const response = await axios.post(`http://${ip}:3000/api/v1/users/signup`, userData);
+                Alert.alert(
+                    "Registro éxitoso",
+                    "El registro se ha completado con éxito, espere a que un administrados active su cuenta para acceder a la App"
+                );
                 navigation.navigate("Login");
-                console.log('Respuesta del servidor:', response.data);
             } catch (error) {
                 console.error('Error al registrar el usuario:', error);
             }
@@ -58,7 +63,7 @@ const RegisterForm = () => {
                 <Text style={styles.header}>Registro</Text>
                 <TextInput style={styles.input} placeholder='Nombre(s)' value={userName} onChangeText={(text) => setUserName(text)} />
                 <TextInput style={styles.input} placeholder='Apellido(s)' value={lastName} onChangeText={(text) => setLastName(text)} />
-{/*                 <View style={styles.pickerContainer}>
+                <View style={styles.pickerContainer}>
                     <Picker
                         selectedValue={documentType}
                         onValueChange={(itemSelected) => setDocumentType(itemSelected)}
@@ -69,7 +74,7 @@ const RegisterForm = () => {
                         <Picker.Item label='Pasaporte' value='Pasaporte' />
                     </Picker>
                 </View>
-                <TextInput style={styles.input} placeholder='Número de documento' value={documentNumber} onChangeText={(text) => setDocumentNumber(text)} keyboardType='numeric' /> */}
+                <TextInput style={styles.input} placeholder='Número de documento' value={documentNumber} onChangeText={(text) => setDocumentNumber(text)} keyboardType='numeric' />
                 <TextInput style={styles.input} placeholder='Email' value={email} onChangeText={(text) => setEmail(text)} keyboardType='email-address' />
                 <TextInput style={styles.input} placeholder='Contrasena' value={password} secureTextEntry={true} onChangeText={(text) => setPassword(text)} />
 
@@ -93,14 +98,6 @@ const RegisterForm = () => {
                     setModalVisible(!modalVisible);
                 }}
             >
-                <View style={{ flexDirection: 'row', alignItems: 'flex-end', backgroundColor: 'lightgray', justifyContent: "space-between"}}>
-                    <View style={{ flexDirection: 'row'}}>
-                        {/* <TouchableOpacity onPress={handleGoBack}>
-                            <AntDesign name="arrowleft" size={30} color="black" />
-                        </TouchableOpacity> */}
-                    </View>
-                </View>
-
                 <ScrollView contentContainerStyle>
                     <PrivacyPolicies />
                 </ScrollView>

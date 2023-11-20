@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { SafeAreaView } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
+import { FlatList, SafeAreaView } from 'react-native';
 import { Text, Card, Button, Icon } from '@rneui/themed';
 import axios from 'axios'
+
+const ip = "192.168.0.12:3000";
 
 const MoviesApiAxios = () => {
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
-      axios.get('https://backendpractice-production-717a.up.railway.app/api/v1/movies')
+      axios.get(`http://${ip}/api/v1/movies`)
       .then((response) => {
           setMovies(response.data)
       })
@@ -18,11 +19,11 @@ const MoviesApiAxios = () => {
   }, [])
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{paddingTop:40, backgroundColor: "#d58635", marginBottom:60}}>
         <FlatList 
         data={movies}
         renderItem={({item})=>(
-          <Card containerStyle={{ height: 800 , borderRadius:20}}>
+          <Card containerStyle={{ height: 800 , borderRadius:15}}>
             <Card.Title>{item.original_title}</Card.Title>
             <Card.Divider/>
             <Card.Image

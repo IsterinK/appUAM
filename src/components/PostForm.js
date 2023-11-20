@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { TextInput } from 'react-native-gesture-handler'
-import { StyleSheet, Text , TouchableHighlight , Button, View } from 'react-native'
+import { StyleSheet, Text , TouchableHighlight , Button, View, TextInput } from 'react-native'
 import axios from 'axios';
 import ImagePickerExample from '../components/ImagePickerExample';
 

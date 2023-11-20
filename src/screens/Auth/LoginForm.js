@@ -3,6 +3,7 @@ import { Alert, Button, Image, StyleSheet, Text, TextInput, TouchableOpacity, Vi
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useLogin } from '../../context/LoginProvider';
 
 const ip = "192.168.0.12:3000";
 
@@ -10,15 +11,16 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [current_password, setcurrent_password] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const { isLoggedIn, setIsLoggedIn, profile, setProfile } = useLogin();
   const navigation = useNavigation();
 
   const handleLogin = async () => {
     try {
       const response = await axios.post(
-        `http://mantenimientoandino.co:3000/api/v1/auth/login`,
+        `http://${ip}/api/v1/users/login`,
         {
           email: email,
-          current_password: current_password,
+          password: current_password,
         }
       );
 
@@ -28,12 +30,18 @@ export const Login = () => {
         "Inicio de sesión exitoso",
         "¡Bienvenido! Por favor, inicia sesión para continuar."
       );
-      navigation.navigate("Welcome");
-    } catch (error) {
-      Alert.alert(
-        "Inicio de sesión incorrecto",
-        "Nombre de usuario o contraseña incorrectos. Por favor, inténtalo de nuevo."
-      );
+      setIsLoggedIn(true)
+      /* navigation.navigate("Welcome"); */
+    }catch (error) {
+      if (error.response && error.response.data && error.response.data.error) {
+        const errorMessage = error.response.data.error;
+        Alert.alert("Inicio de sesión incorrecto", errorMessage);
+      } else {
+        Alert.alert(
+          "Inicio de sesión incorrecto",
+          "Ha ocurrido un error. Por favor, inténtalo de nuevo."
+        );
+      }
     }
   };
 

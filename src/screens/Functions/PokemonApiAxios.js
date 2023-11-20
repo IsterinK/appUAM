@@ -1,17 +1,18 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { SafeAreaView } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
+import { SafeAreaView, FlatList } from 'react-native';
 import { Card } from '@rneui/themed';
 import { View } from 'react-native';
 import { Image } from 'react-native';
+
+const ip = "192.168.0.12:3000";
 
 const PokemonApiAxios = () => {
 
     const [pokemons, setPokemons] = useState('');
 
     useEffect(() => {
-        axios.get('https://backendpractice-production-717a.up.railway.app/api/v1/pokemons/')
+        axios.get(`http://${ip}/api/v1/pokemons`)
         .then((response) => {
             setPokemons(response.data)
         })
@@ -22,12 +23,10 @@ const PokemonApiAxios = () => {
 
     
   return (
-    <SafeAreaView>
-
+    <SafeAreaView style={{paddingTop:40, backgroundColor: "#d58635", paddingBottom:65}}>
         <FlatList data={pokemons} 
-
             renderItem={({item}) => (
-                <Card sx={{ maxWidth:345}}>
+                <Card sx={{ maxWidth:345}} containerStyle={{borderRadius:15}}>
                     <Card.Title>{item.name}</Card.Title>
                     <Card.Divider></Card.Divider>
                     <View style= {{position:"relative", alignItems:"center"}}>
@@ -36,7 +35,6 @@ const PokemonApiAxios = () => {
                             resizeMode='contain'
                             source={{uri: item.img}}
                         />
-
                     </View>
                 </Card>
             )}

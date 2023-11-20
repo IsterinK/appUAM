@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Modal, StyleSheet, Text , TouchableHighlight , Button, FlatList, Image, View } from 'react-native'
+import { Modal, StyleSheet, Text , TouchableHighlight , Button, FlatList, Image, View, TouchableOpacity } from 'react-native'
 import { Card , Divider} from 'react-native-elements';
-import PostForm from './PostForm';
+import PostForm from '../../components/PostForm';
 import axios from 'axios';
 import Swiper from 'react-native-swiper';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+
 
 export const Posts = () => {
     const ip = "192.168.0.12"
@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
         alignItems:"center",
         flex:1,
         backgroundColor:"#ED9E4E",
+        marginBottom:55
     },
 
     imageContainer:{
