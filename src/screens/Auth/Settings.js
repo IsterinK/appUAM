@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useLogin } from '../../context/LoginProvider';
+import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 
 const ip = "192.168.0.12:3000";
 
 const Settings = () => {
+    const navigation = useNavigation();
     const { isLoggedIn, setIsLoggedIn } = useLogin();
     const [user, setUser] = useState("")
     
@@ -32,7 +34,7 @@ const Settings = () => {
 
     const handleOptionPress = (option) => {
         if (option === 'Admin') {
-            console.log('Hacer algo para la opción "Posts"');
+            navigation.navigate("userManagement");
         } else if (option === 'Cerrar sesión') {
             handleLogout()
         }
@@ -56,7 +58,7 @@ const Settings = () => {
                     style={styles.button}
                     onPress={() => handleOptionPress('Admin')}
                 >
-                    <Text style={styles.buttonText}>Posts</Text>
+                    <Text style={styles.buttonText}>Gestión de usuarios</Text>
                 </TouchableOpacity>
             )}
 

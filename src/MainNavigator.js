@@ -8,6 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 //Screens
 import { MoviesApiAxios, PokemonApiAxios, Posts } from "./screens/Functions/index"
 import { LoginForm, RegisterForm, PrivacyPolicies , Settings} from './screens/Auth/index';
+import { UsersManagement } from './screens/Admin/index'
 
 //Icons
 import { FontAwesome } from '@expo/vector-icons';
@@ -113,6 +114,12 @@ const MainTabs = () => {
                     }
                 }}
             />       
+
+            <Tab.Screen 
+                name="userManagement" 
+                component={UsersManagement} 
+                options={{ tabBarButton: () => null }} 
+            />
         </Tab.Navigator>
     );
 };
